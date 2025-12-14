@@ -14,6 +14,30 @@
 
 .container {
   width: 100%;
+  text-align: center;
+}
+
+/* Intro text - Adobe XD character style 1 */
+.introText {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-lg);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-primary);
+}
+
+/* Speciality text - Adobe XD character style 2 (modified) */
+.specialityText {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+  font-size: 43px;
+  line-height: 55px;
+  letter-spacing: 0px;
+  color: var(--color-primary);
+  text-align: center;
 }
 
 /* Heading styles */

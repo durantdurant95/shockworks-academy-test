@@ -5,9 +5,8 @@ export default function Home() {
     <main className={styles.main}>
       <section className={styles.section}>
         <div className={styles.container}>
-          <h1 className={styles.heading}>Section title</h1>
-          <h2 className={styles.subtitle}>Your subtitle or description</h2>
-          <p className={styles.text}>Here goes the content of the section.</p>
+          <h1 className={styles.introText}>What is the</h1>
+          <h2 className={styles.specialityText}>Speciality Of Us?</h2>
         </div>
       </section>
     </main>
