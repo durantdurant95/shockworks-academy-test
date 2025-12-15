@@ -61,30 +61,41 @@ export default function Carousel() {
             transform: `translateX(-${currentIndex * (423 + 24)}px)`,
           }}
         >
-          {articles.map((article, index) => (
-            <div key={index} className={styles.card}>
-              <div className={styles.cardImage}>
-                <Image
-                  src={article.urlToImage || "/placeholder.jpg"}
-                  alt={article.title}
-                  width={255}
-                  height={255}
-                  unoptimized
-                  className={styles.image}
-                />
+          {articles.map((article, index) => {
+            // Determine if card is on the side (partially visible)
+            const isSideCard =
+              index < currentIndex || index >= currentIndex + 3;
+
+            return (
+              <div
+                key={index}
+                className={`${styles.card} ${
+                  isSideCard ? styles.sideCard : ""
+                }`}
+              >
+                <div className={styles.cardImage}>
+                  <Image
+                    src={article.urlToImage || "/placeholder.jpg"}
+                    alt={article.title}
+                    width={255}
+                    height={255}
+                    unoptimized
+                    className={styles.image}
+                  />
+                </div>
+                <div className={styles.cardContent}>
+                  <h3 className={styles.cardTitle}>
+                    {article.title?.substring(0, 60)}
+                    {article.title?.length > 60 ? "..." : ""}
+                  </h3>
+                  <p className={styles.cardSubtitle}>
+                    {article.description?.substring(0, 100)}
+                    {article.description?.length > 100 ? "..." : ""}
+                  </p>
+                </div>
               </div>
-              <div className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>
-                  {article.title?.substring(0, 60)}
-                  {article.title?.length > 60 ? "..." : ""}
-                </h3>
-                <p className={styles.cardSubtitle}>
-                  {article.description?.substring(0, 100)}
-                  {article.description?.length > 100 ? "..." : ""}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
