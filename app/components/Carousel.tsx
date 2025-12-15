@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "./Carousel.module.css";
 
+/**
+ * Article interface for News API response
+ */
 interface Article {
   title: string;
   description: string;
@@ -11,6 +14,14 @@ interface Article {
   url: string;
 }
 
+/**
+ * Carousel component that displays news articles in a sliding carousel
+ * Features:
+ * - Fetches data from News API
+ * - Displays 3 center cards at full size (532px)
+ * - Side cards are scaled down to 486px
+ * - Smooth animations and transitions
+ */
 export default function Carousel() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,13 +30,13 @@ export default function Carousel() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // Using top headlines endpoint (doesn't require API key for limited requests)
         const response = await fetch(
           "https://newsapi.org/v2/top-headlines?country=us&pageSize=10&apiKey=b42951452b37423faf4cc0f654aeb2e6"
         );
         const data = await response.json();
 
         if (data.articles) {
+          // Filter articles that have images
           setArticles(
             data.articles.filter((article: Article) => article.urlToImage)
           );
@@ -40,10 +51,16 @@ export default function Carousel() {
     fetchNews();
   }, []);
 
+  /**
+   * Navigate to previous card
+   */
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? 0 : prev - 1));
   };
 
+  /**
+   * Navigate to next card
+   */
   const handleNext = () => {
     setCurrentIndex((prev) => (prev >= articles.length - 3 ? prev : prev + 1));
   };

@@ -45,117 +45,38 @@
   text-align: center;
 }
 
-/* Heading styles */
-.heading {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-xl);
-  line-height: var(--line-height-lg);
-  letter-spacing: var(--letter-spacing-tight);
-  color: var(--color-primary);
-  margin-bottom: 20px;
-}
-
-.subtitle {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-base);
-  letter-spacing: var(--letter-spacing-lg);
-  color: var(--color-secondary);
-  margin-bottom: 16px;
-}
-
-.text {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-sm);
-  letter-spacing: var(--letter-spacing-base);
-  color: var(--color-primary);
-}
-
 /* Media Queries */
 
 /* Tablet */
 @media (max-width: 768px) {
   .section {
-    padding: 40px 16px;
+    padding: 40px 16px 0;
   }
 
-  .heading {
+  .introText {
     font-size: 28px;
     line-height: 36px;
   }
 
-  .subtitle {
-    font-size: 20px;
-    line-height: 28px;
-  }
-
-  .text {
-    font-size: 14px;
-    line-height: 24px;
+  .specialityText {
+    font-size: 32px;
+    line-height: 42px;
   }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
   .section {
-    padding: 30px 16px;
+    padding: 30px 16px 0;
   }
 
-  .heading {
+  .introText {
     font-size: 24px;
     line-height: 32px;
   }
 
-  .subtitle {
-    font-size: 18px;
-    line-height: 26px;
-  }
-
-  .text {
-    font-size: 14px;
-    line-height: 22px;
-  }
-}
-
-a.secondary:hover {
-  background: var(--button-secondary-hover);
-  border-color: transparent;
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .specialityText {
+    font-size: 28px;
+    line-height: 36px;
   }
 }
