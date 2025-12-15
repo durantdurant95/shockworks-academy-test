@@ -65,15 +65,15 @@ shockworks-academy-test/
    npm install
    ```
 
-3. **Configure News API Key** (Optional)
+3. **Configure News API Key**
 
-   The project includes a demo API key. For production use, get your own free key at [newsapi.org](https://newsapi.org) and update it in `app/components/Carousel.tsx`:
+   Get your free API key at [newsapi.org](https://newsapi.org) and add it to `.env.local`:
 
-   ```typescript
-   const response = await fetch(
-     "https://newsapi.org/v2/top-headlines?country=us&pageSize=10&apiKey=YOUR_API_KEY"
-   );
+   ```bash
+   NEWS_API_KEY=your_api_key_here
    ```
+
+   The `.env.local` file is already created with a demo key, but you should replace it with your own for production use.
 
 4. **Run the development server**
 
@@ -176,7 +176,20 @@ pnpm start
 pnpm lint
 ```
 
-## 📝 Code Quality
+## � Deployment to Vercel
+
+### Environment Variables
+
+When deploying to Vercel, add the following environment variable:
+
+1. Go to your Vercel project settings
+2. Navigate to "Environment Variables"
+3. Add: `NEWS_API_KEY` with your News API key value
+4. Save and redeploy
+
+**Note**: The API uses a server-side route (`/api/news`) to fetch articles, which prevents CORS issues and keeps the API key secure.
+
+## �📝 Code Quality
 
 - ✅ **Clean code**: Well-organized, commented, and readable
 - ✅ **TypeScript**: Full type safety with interfaces

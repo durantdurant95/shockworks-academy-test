@@ -1,139 +1,22 @@
-"use client";
-
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import styles from "./Carousel.module.css";
+import { fetchNewsArticles } from "../actions/news";
+import CarouselClient from "./CarouselClient";
 
 /**
- * Article interface for News API response
+ * Server Component wrapper that fetches news data
+ * and passes it to the client-side carousel
  */
-interface Article {
-  title: string;
-  description: string;
-  urlToImage: string;
-  url: string;
-}
+export default async function Carousel() {
+  const result = await fetchNewsArticles();
 
-/**
- * Carousel component that displays news articles in a sliding carousel
- * Features:
- * - Fetches data from News API
- * - Displays 3 center cards at full size (532px)
- * - Side cards are scaled down to 486px
- * - Smooth animations and transitions
- */
-export default function Carousel() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await fetch(
-          "https://newsapi.org/v2/top-headlines?country=us&pageSize=10&apiKey=b42951452b37423faf4cc0f654aeb2e6"
-        );
-        const data = await response.json();
-
-        if (data.articles) {
-          // Filter articles that have images
-          setArticles(
-            data.articles.filter((article: Article) => article.urlToImage)
-          );
-        }
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching news:", error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchNews();
-  }, []);
-
-  /**
-   * Navigate to previous card
-   */
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? 0 : prev - 1));
+  type Article = {
+    urlToImage?: string;
+    [key: string]: unknown;
   };
 
-  /**
-   * Navigate to next card
-   */
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= articles.length - 3 ? prev : prev + 1));
-  };
+  const articles =
+    result.success && result.data.articles
+      ? result.data.articles.filter((article: Article) => article.urlToImage)
+      : [];
 
-  if (isLoading) {
-    return <div className={styles.loading}>Loading articles...</div>;
-  }
-
-  return (
-    <div className={styles.carouselWrapper}>
-      <div className={styles.carouselContainer}>
-        <div
-          className={styles.carouselTrack}
-          style={{
-            transform: `translateX(-${currentIndex * (423 + 24)}px)`,
-          }}
-        >
-          {articles.map((article, index) => {
-            // Determine if card is on the side (partially visible)
-            const isSideCard =
-              index < currentIndex || index >= currentIndex + 3;
-
-            return (
-              <div
-                key={index}
-                className={`${styles.card} ${
-                  isSideCard ? styles.sideCard : ""
-                }`}
-              >
-                <div className={styles.cardImage}>
-                  <Image
-                    src={article.urlToImage || "/placeholder.jpg"}
-                    alt={article.title}
-                    width={255}
-                    height={255}
-                    unoptimized
-                    className={styles.image}
-                  />
-                </div>
-                <div className={styles.cardContent}>
-                  <h3 className={styles.cardTitle}>
-                    {article.title?.substring(0, 60)}
-                    {article.title?.length > 60 ? "..." : ""}
-                  </h3>
-                  <p className={styles.cardSubtitle}>
-                    {article.description?.substring(0, 100)}
-                    {article.description?.length > 100 ? "..." : ""}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className={styles.navigationButtons}>
-        <button
-          className={styles.navButton}
-          onClick={handlePrevious}
-          disabled={currentIndex === 0}
-          aria-label="Previous"
-        >
-          <Image src="/arrow-left.svg" alt="Previous" width={18} height={18} />
-        </button>
-        <button
-          className={styles.navButton}
-          onClick={handleNext}
-          disabled={currentIndex >= articles.length - 3}
-          aria-label="Next"
-        >
-          <Image src="/arrow-right.svg" alt="Next" width={18} height={18} />
-        </button>
-      </div>
-    </div>
-  );
+  return <CarouselClient articles={articles} />;
 }
