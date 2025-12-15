@@ -106,7 +106,7 @@ export default function Carousel() {
           disabled={currentIndex === 0}
           aria-label="Previous"
         >
-          ←
+          <Image src="/arrow-left.svg" alt="Previous" width={18} height={18} />
         </button>
         <button
           className={styles.navButton}
@@ -114,7 +114,7 @@ export default function Carousel() {
           disabled={currentIndex >= articles.length - 3}
           aria-label="Next"
         >
-          →
+          <Image src="/arrow-right.svg" alt="Next" width={18} height={18} />
         </button>
       </div>
     </div>
