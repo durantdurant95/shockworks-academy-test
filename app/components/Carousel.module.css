@@ -1,0 +1,188 @@
+/* Carousel wrapper */
+.carouselWrapper {
+  width: 100%;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Carousel container with overflow */
+.carouselContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 40px 60px;
+}
+
+/* Carousel track that slides */
+.carouselTrack {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.5s ease-in-out;
+  will-change: transform;
+}
+
+/* Card styling */
+.card {
+  min-width: 423px;
+  width: 423px;
+  height: 532px;
+  background: #ffffff;
+  box-shadow: 0px 10px 30px #99999933;
+  border-radius: 8px;
+  opacity: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+/* Card image container */
+.cardImage {
+  width: 100%;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: visible;
+}
+
+.image {
+  width: 255px;
+  height: 255px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Card content */
+.cardContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+/* Card title */
+.cardTitle {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-base);
+  letter-spacing: var(--letter-spacing-lg);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+/* Card subtitle */
+.cardSubtitle {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-sm);
+  letter-spacing: var(--letter-spacing-base);
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+/* Navigation buttons */
+.navigationButtons {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.navButton {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navButton:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.navButton:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+/* Loading state */
+.loading {
+  width: 100%;
+  text-align: center;
+  padding: 80px 20px;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-secondary);
+}
+
+/* Media Queries */
+
+/* Tablet */
+@media (max-width: 1080px) {
+  .carouselContainer {
+    padding: 0 40px;
+  }
+
+  .card {
+    min-width: 340px;
+    width: 340px;
+    height: 480px;
+  }
+
+  .cardImage {
+    height: 220px;
+  }
+
+  .carouselTrack {
+    gap: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .carouselContainer {
+    padding: 0 20px;
+  }
+
+  .card {
+    min-width: 300px;
+    width: 300px;
+    height: 440px;
+  }
+
+  .cardImage {
+    height: 200px;
+  }
+
+  .cardContent {
+    padding: 16px;
+  }
+
+  .navButton {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}

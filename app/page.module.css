@@ -7,9 +7,14 @@
 /* Landing section */
 .section {
   width: 100%;
+  padding: 60px 20px 0;
+}
+
+.titleContainer {
+  width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 60px 20px;
+  text-align: center;
 }
 
 .container {
