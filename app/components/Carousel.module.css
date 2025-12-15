@@ -149,7 +149,7 @@
 /* Tablet */
 @media (max-width: 1080px) {
   .carouselContainer {
-    padding: 0 40px;
+    padding: 40px 40px;
   }
 
   .card {
@@ -158,19 +158,32 @@
     height: 480px;
   }
 
+  .sideCard {
+    height: 440px;
+  }
+
   .cardImage {
-    height: 220px;
+    margin-bottom: 32px;
+  }
+
+  .image {
+    width: 200px;
+    height: 200px;
   }
 
   .carouselTrack {
     gap: 16px;
+  }
+
+  .cardTitle {
+    margin: 0 0 20px 0;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .carouselContainer {
-    padding: 0 20px;
+    padding: 40px 20px;
   }
 
   .card {
@@ -179,17 +192,36 @@
     height: 440px;
   }
 
+  .sideCard {
+    height: 400px;
+  }
+
   .cardImage {
-    height: 200px;
+    margin-bottom: 24px;
+  }
+
+  .image {
+    width: 180px;
+    height: 180px;
   }
 
   .cardContent {
-    padding: 16px;
+    padding: 0 16px 16px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+    line-height: 26px;
+    margin: 0 0 16px 0;
+  }
+
+  .cardSubtitle {
+    font-size: 14px;
+    line-height: 22px;
   }
 
   .navButton {
     width: 48px;
     height: 48px;
-    font-size: 20px;
   }
 }
